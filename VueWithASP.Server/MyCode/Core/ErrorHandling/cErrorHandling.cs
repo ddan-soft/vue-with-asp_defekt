@@ -225,7 +225,8 @@ namespace VueWithASP.Server.MyCode.Core.ErrorHandling
         sLoggedText = sLoggedText + "\n ------------------------------------------------";
         sLoggedText = sLoggedText + "\n";
 
-        WriteErrorLog(sLoggedText);
+        //WriteErrorLog(sLoggedText);
+        Console.Write(sLoggedText);
 
         if (bAlreadyLogged == false & pnEmailPrio > 0)
         {

@@ -11,12 +11,13 @@ namespace VueWithASP.Server.MyCode.Core.Settings
       ErrorEmailListPrio2,
       SmtpServer,
       SmtpEmailUser,
-      SmtpEmailPass
+      SmtpEmailPass,
+      DbPass
     }
 
     public static string getSetting(eSetting pSetting)
     {
-      String sReturn = "";
+      String? sReturn = "";
 
       switch (pSetting)
       {
@@ -39,6 +40,14 @@ namespace VueWithASP.Server.MyCode.Core.Settings
           sReturn = Environment.GetEnvironmentVariable("EMAIL_PASS");
 
           if (sReturn is null) 
+          {
+            sReturn = "";
+          }
+          break;
+        case eSetting.DbPass:
+          sReturn = Environment.GetEnvironmentVariable("DB_PASS");
+
+          if (sReturn is null)
           {
             sReturn = "";
           }
