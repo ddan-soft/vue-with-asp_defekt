@@ -1,0 +1,52 @@
+
+ ******** 20.12.2023 21:29:16 ******************************
+ VueWithASP.Server; Version: 1.0.0
+ Error message:  Test programm
+ Source:     at Program.<Main>$(String[] args) in D:\Home\Daniel\SoftwareEntwicklung\WebApp\VueWithASP\VueWithASP.Server\Program.cs:line 4
+ Stack
+:  
+ ------------------------------------------------
+
+
+ ******** 20.12.2023 21:30:15 ******************************
+ VueWithASP.Server; Version: 1.0.0
+ Error message:  The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.57 Client not authenticated to send mail. Error: 535 5.7.139 Authentication unsuccessful, the user credentials were incorrect. [AS4P192CA0039.EURP192.PROD.OUTLOOK.COM 2023-12-20T20:30:17.974Z 08DC012DC38E8C12]
+ Source:     at System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at VueWithASP.Server.MyCode.Core.Utils.cEmail.SendEmail(String psSubject, String psMessage, List`1 poTo_Addresses, String psFrom, Boolean pbHTML, String psCredentialUser, String psCredentialPass, List`1 poAttachments, List`1 poCC_Adressen, List`1 poBCC_Adressen) in D:\Home\Daniel\SoftwareEntwicklung\WebApp\VueWithASP\VueWithASP.Server\MyCode\Core\Utils\cEmail.cs:line 102
+ Stack
+:  
+ --- Variablen --
+psSubject = Programm error
+psFrom = 
+strAdressen = ;ddan6709@hotmail.com
+psMessage = 
+ ******** 20.12.2023 21:29:16 ******************************
+ VueWithASP.Server; Version: 1.0.0
+ Error message:  Test programm
+ Source:     at Program.<Main>$(String[] args) in D:\Home\Daniel\SoftwareEntwicklung\WebApp\VueWithASP\VueWithASP.Server\Program.cs:line 4
+ Stack
+:  
+ ------------------------------------------------
+
+ ------------------------------------------------
+
+
+ ******** 20.12.2023 21:33:36 ******************************
+ VueWithASP.Server; Version: 1.0.0
+ Error message:  Test programm
+ Source:     at Program.<Main>$(String[] args) in D:\Home\Daniel\SoftwareEntwicklung\WebApp\VueWithASP\VueWithASP.Server\Program.cs:line 4
+ Stack
+:  
+ ------------------------------------------------
+
+
+ ******** 20.12.2023 21:36:45 ******************************
+ VueWithASP.Server; Version: 1.0.0
+ Error message:  Test programm
+ Source:     at Program.<Main>$(String[] args) in D:\Home\Daniel\SoftwareEntwicklung\WebApp\VueWithASP\VueWithASP.Server\Program.cs:line 4
+ Stack
+:  
+ ------------------------------------------------
+
