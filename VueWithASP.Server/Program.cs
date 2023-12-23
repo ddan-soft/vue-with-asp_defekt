@@ -27,26 +27,25 @@ try  {
 
     app.UseHttpsRedirection();
 
-  string connectionString = app.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING")!;
-  connectionString = connectionString.Replace("{your_password}"
-    , VueWithASP.Server.MyCode.Core.Settings.cSettings.getSetting(cSettings.eSetting.DbPass)
-    );
-  try
-  {
-    // Table would be created ahead of time in production
-    using var conn = new SqlConnection(connectionString);
-    conn.Open();
+  //string connectionString = app.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING")!;
+  //connectionString = connectionString.Replace("{your_password}"
+  //  , VueWithASP.Server.MyCode.Core.Settings.cSettings.getSetting(cSettings.eSetting.DbPass)
+  //  );
+  //try
+  //{
+  //  using var conn = new SqlConnection(connectionString);
+  //  conn.Open();
 
-    var command = new SqlCommand(
-        "SELECT * FROM [dbo].[APP_OBJECTS];",
-        conn);
-    using SqlDataReader reader = command.ExecuteReader();
-  }
-  catch (Exception e)
-  {
-    // Table may already exist
-    Console.WriteLine(e.Message);
-  }
+  //  var command = new SqlCommand(
+  //      "SELECT * FROM [dbo].[APP_OBJECTS];",
+  //      conn);
+  //  using SqlDataReader reader = command.ExecuteReader();
+  //}
+  //catch (Exception e)
+  //{
+  //  // Table may already exist
+  //  Console.WriteLine(e.Message);
+  //}
 
   app.UseAuthorization();
 
