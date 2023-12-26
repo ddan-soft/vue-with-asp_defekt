@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("VueWithASP.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dbb26a54192e1b4a08ee7ac02023efdf887d186f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8e562368dab2ebfb2b67e26829dd404723513e67")]
 [assembly: System.Reflection.AssemblyProductAttribute("VueWithASP.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VueWithASP.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

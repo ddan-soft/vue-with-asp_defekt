@@ -3,29 +3,36 @@ using Microsoft.Data.SqlClient;
 using VueWithASP.Server.MyCode.Core.ErrorHandling;
 using VueWithASP.Server.MyCode.Core.Settings;
 
-try  {
+try
+{
   var builder = WebApplication.CreateBuilder(args);
 
-    // Add services to the container.
+  // Add services to the container.
 
-    builder.Services.AddControllers();
-    // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-    builder.Services.AddEndpointsApiExplorer();
-    builder.Services.AddSwaggerGen();
+  builder.Services.AddControllers();
+  // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+  builder.Services.AddEndpointsApiExplorer();
+  builder.Services.AddSwaggerGen();
 
-    var app = builder.Build();
+  var app = builder.Build();
 
-    app.UseDefaultFiles();
-    app.UseStaticFiles();
+  app.Use(async (context, next) =>
+  {
+    context.Request.EnableBuffering();
+    await next();
+  });
 
-    // Configure the HTTP request pipeline.
-    if (app.Environment.IsDevelopment())
-    {
-        app.UseSwagger();
-        app.UseSwaggerUI();
-    }
+  app.UseDefaultFiles();
+  app.UseStaticFiles();
 
-    app.UseHttpsRedirection();
+  // Configure the HTTP request pipeline.
+  if (app.Environment.IsDevelopment())
+  {
+    app.UseSwagger();
+    app.UseSwaggerUI();
+  }
+
+  app.UseHttpsRedirection();
 
   //string connectionString = app.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING")!;
   //connectionString = connectionString.Replace("{your_password}"
@@ -46,16 +53,21 @@ try  {
   //  // Table may already exist
   //  Console.WriteLine(e.Message);
   //}
+  app.UseRouting();
 
   app.UseAuthorization();
 
-    app.MapControllers();
+  app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
-    app.MapFallbackToFile("/index.html");
+  //app.MapControllers();
+
+  app.MapFallbackToFile("/index.html");
   app.Run();
 
 }
 catch (Exception oException)
 {
-  VueWithASP.Server.MyCode.Core.ErrorHandling.cErrorHandling.LogError(oException  );
+  VueWithASP.Server.MyCode.Core.ErrorHandling.cErrorHandling.LogError(oException);
 }

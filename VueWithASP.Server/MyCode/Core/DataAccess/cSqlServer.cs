@@ -39,7 +39,7 @@ namespace VueWithASP.Server.MyCode.Core.DataAccess
       return parameterObject;
     }
 
-    protected SqlParameter GetParameterOut(string parameter, SqlDbType type, object value = null, ParameterDirection parameterDirection = ParameterDirection.InputOutput)
+    protected SqlParameter GetParameterOut(string parameter, SqlDbType type, object? value = null, ParameterDirection parameterDirection = ParameterDirection.InputOutput)
     {
       SqlParameter parameterObject = new SqlParameter(parameter, type); ;
 

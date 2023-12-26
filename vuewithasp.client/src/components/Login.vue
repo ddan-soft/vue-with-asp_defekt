@@ -1,6 +1,6 @@
 <template>
   <div class="center" style="width: 1024px; text-align: center;">
-    <img src="../components/Icons/logo-websites-31268.png" style="width =200px; height: 200px;">
+    <img src="../components/Icons/logo-websites-31268.png" style="width:200px; height: 200px;">
     <v-form v-model="valid">
       <v-card class="mx-auto pa-8 pb-8" elevation="4" max-width="448" rounded="lg">
         <v-toolbar color="primary">
@@ -9,14 +9,13 @@
         <br />
         <br />
 
-        <v-text-field 
-          ref="userName"
-          required
-          :rules="nameRules"
-          density="compact" label="User name"
-          prepend-inner-icon="mdi-account-outline"
-          variant="outlined"
-          >
+        <v-text-field v-model="username"
+                      ref="userName"
+                      required
+                      :rules="nameRules"
+                      density="compact" label="User name"
+                      prepend-inner-icon="mdi-account-outline"
+                      variant="outlined">
         </v-text-field>
         <br />
         <br />
@@ -27,24 +26,27 @@
           </a>
         </div>
 
-        <v-text-field 
-          :rules="passsRules"
-          required
-          :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
-          :type="visible ? 'text' : 'password'"
-          density="compact" label="Enter your password"
-          prepend-inner-icon="mdi-lock-outline" variant="outlined"
-          @click:append-inner="visible = !visible">
+        <v-text-field v-model="password"
+                      :rules="passsRules"
+                      required
+                      :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
+                      :type="visible ? 'text' : 'password'"
+                      density="compact" label="Enter your password"
+                      prepend-inner-icon="mdi-lock-outline" variant="outlined"
+                      @click:append-inner="visible = !visible">
 
         </v-text-field>
         <br />
         <br />
         <br />
 
-        <v-btn style="'border: 1px solid blue;" block class="mb-8"
+        <v-btn @click="logIn"
+               style="border: 1px solid blue;"
+               block class="mb-8"
                color="blue" size="large" rounded="xl">
           Log In
         </v-btn>
+        <p>{{loginResult}}</p>
 
         <v-card-text v-if="false" class="text-center">
           <a class="text-blue text-decoration-none" href="#" rel="noopener noreferrer" target="_blank">
@@ -57,12 +59,13 @@
 </template>
 
 <script>
-  export default {    
+  export default {
     data: () => ({
       visible: false,
       valid: false,
       username: '',
       password: '',
+      loginResult: '',
       nameRules: [
         value => {
           if (value) return true
@@ -76,9 +79,58 @@
           return 'Password is required.'
         },
       ],
-    }),
+    }), // ENDE -- data:
     mounted() {
       this.$refs["userName"].focus();
+    },
+    methods: {
+      async logIn() {
+        let myHeaders = new Headers();
+        let myInit = {
+          method: "POST",
+          headers: myHeaders,
+          mode: "cors",
+          cache: "default",
+          body: {
+            userName: this.username,
+            password: this.password
+          }
+        };
+
+        const jsonData = {
+          userName: this.username,
+          password: this.password
+        };
+
+        const postData = new FormData();
+        postData.append("json", JSON.stringify(jsonData));
+
+        myHeaders = new Headers();
+
+        myInit = {
+          method: "POST",
+          headers: myHeaders,
+          mode: "cors",
+          cache: "default",
+          body: postData
+        };
+
+        const myRequest = new Request("login");
+
+        fetch(myRequest, myInit)
+          .then((response) => {
+            //console.log("response:" + response);
+            let vJson = response.json();
+            return vJson
+          })
+          .then((json) => {
+            this.loginResult = json
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+          ;
+      }
     }
   }
 </script>
