@@ -56,6 +56,7 @@ export default defineConfig({
         //        target: 'https://localhost:7017/',
         //        secure: false
         //    },
+        proxy: {
             '^/run': {
                 target: 'https://localhost:7017/',
                 secure: false
