@@ -118,7 +118,7 @@
             this.loginResult = jsonObject.message
             if (jsonObject.success === true) {
               sessionStorage.setItem("Page_Home_Session_Id", jsonObject.sessionId)
-              window.location.href = '/src/pages/home/home.html';
+              window.location.href = '/home.html';
             }
           })
           .catch((error) => {
