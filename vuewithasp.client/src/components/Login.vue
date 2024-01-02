@@ -103,7 +103,7 @@
           body: postData
         };
 
-        const myRequest = new Request("/login");
+        const myRequest = new Request("login");
 
         fetch(myRequest, myInit)
           .then((response) => {
