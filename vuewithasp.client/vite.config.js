@@ -51,12 +51,15 @@ export default defineConfig({
         //        secure: false
         //    }
         //},
-        proxy: {
-            '^/login': {
+        //proxy: {
+        //    '^/login': {
+        //        target: 'https://localhost:7017/',
+        //        secure: false
+        //    },
+            '^/run': {
                 target: 'https://localhost:7017/',
                 secure: false
-            }
-        },
+            }        },
         port: 5173,
         https: {
             key: fs.readFileSync(keyFilePath),
