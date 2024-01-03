@@ -26,12 +26,4 @@
     </ProjectReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <EditorConfigFiles Remove="D:\Home\Daniel\SoftwareEntwicklung\WebApp\VueWithASP\VueWithASP.Server\.editorconfig" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="D:\Home\Daniel\SoftwareEntwicklung\WebApp\VueWithASP\VueWithASP.Server\.editorconfig" />
-  </ItemGroup>
-
 </Project>

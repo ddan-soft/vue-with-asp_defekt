@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "hOgmOrIv+ZgenZrapazq93dbTClhkI76wVv9td0QBUw=",
+  "Hash": "1PsrHCylu5JhiqOSjag7YUbdGKXlL/12xM4VVXM4bCw=",
   "Source": "VueWithASP.Server",
   "BasePath": "_content/VueWithASP.Server",
   "Mode": "Default",
@@ -18,14 +18,6 @@
       "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained"
     }
   ],
-  "DiscoveryPatterns": [
-    {
-      "Name": "VueWithASP.Server\\wwwroot",
-      "Source": "VueWithASP.Server",
-      "ContentRoot": "D:\\Home\\Daniel\\SoftwareEntwicklung\\WebApp\\VueWithASP\\VueWithASP.Server\\wwwroot\\",
-      "BasePath": "_content/VueWithASP.Server",
-      "Pattern": "**"
-    }
-  ],
+  "DiscoveryPatterns": [],
   "Assets": []
 }
