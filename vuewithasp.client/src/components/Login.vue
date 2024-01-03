@@ -85,29 +85,17 @@
     },
     methods: {
       async logIn() {
-        let myHeaders = new Headers();
-        let myInit = {
-          method: "POST",
-          headers: myHeaders,
-          mode: "cors",
-          cache: "default",
-          body: {
-            userName: this.username,
-            password: this.password
-          }
-        };
-
         const jsonData = {
-          userName: this.username,
-          password: this.password
+          userName: escape(this.username.replace(/[&<>"'\/]/g, '')),
+          password: escape(this.password.replace(/[&<>"'\/]/g, ''))
         };
 
         const postData = new FormData();
         postData.append("json", JSON.stringify(jsonData));
 
-        myHeaders = new Headers();
+        const myHeaders = new Headers();
 
-        myInit = {
+        const myInit = {
           method: "POST",
           headers: myHeaders,
           mode: "cors",
@@ -115,7 +103,7 @@
           body: postData
         };
 
-        const myRequest = new Request("login");
+        const myRequest = new Request("/login");
 
         fetch(myRequest, myInit)
           .then((response) => {
@@ -123,13 +111,21 @@
             let vJson = response.json();
             return vJson
           })
-          .then((json) => {
-            this.loginResult = json
+          .then((jsonString) => {
+            jsonString = jsonString.replace(/'/g, '"')
+            const jsonObject = JSON.parse(jsonString);
+            
+            this.loginResult = jsonObject.message
+            if (jsonObject.success === true) {
+              sessionStorage.setItem("Page_Home_Session_Id", jsonObject.sessionId)
+              window.location.href = '/src/pages/home/home.html';
+            }
           })
           .catch((error) => {
             console.error(error);
           });
-          ;
+        ;
+
       }
     }
   }

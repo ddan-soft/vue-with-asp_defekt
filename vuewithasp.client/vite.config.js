@@ -55,7 +55,11 @@ export default defineConfig({
             '^/login': {
                 target: 'https://localhost:7017/',
                 secure: false
-            }
+            },
+            '^/run': {
+            target: 'https://localhost:7017/',
+            secure: false
+            },
         },
         port: 5173,
         https: {
