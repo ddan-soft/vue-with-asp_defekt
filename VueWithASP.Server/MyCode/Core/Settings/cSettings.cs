@@ -12,8 +12,7 @@ namespace VueWithASP.Server.MyCode.Core.Settings
       SmtpServer,
       SmtpEmailUser,
       SmtpEmailPass,
-      DbPass,
-      DbConnectionString
+      DbPass
     }
 
     public static string getSetting(eSetting pSetting)
@@ -53,14 +52,7 @@ namespace VueWithASP.Server.MyCode.Core.Settings
             sReturn = "";
           }
           break;
-        case eSetting.DbConnectionString:
-          sReturn = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
-
-          if (sReturn is null)
-          {
-            sReturn = "";
-          }
-          break;
+        //Environment.GetEnvironmentVariable("MY_VAR")
         default:
           sReturn = "";
           break;

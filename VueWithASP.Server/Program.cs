@@ -1,9 +1,7 @@
 using Microsoft.AspNetCore.Hosting.Server;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using VueWithASP.Server.MyCode.Core.ErrorHandling;
 using VueWithASP.Server.MyCode.Core.Settings;
-using static System.Net.Mime.MediaTypeNames;
 
 try
 {
@@ -12,34 +10,11 @@ try
   // Add services to the container.
 
   builder.Services.AddControllers();
-  builder.Services.AddProblemDetails();
   // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
   builder.Services.AddEndpointsApiExplorer();
   builder.Services.AddSwaggerGen();
 
-  builder.Services.AddControllers(options =>
-  {
-    options.Filters.Add<cHttpResponseExceptionFilter>();
-  });
-
-  builder.Services.AddControllers()
-    .ConfigureApiBehaviorOptions(options =>
-    {
-      options.InvalidModelStateResponseFactory = context =>
-          new BadRequestObjectResult(context.ModelState)
-          {
-            ContentTypes =
-              {
-                    // using static System.Net.Mime.MediaTypeNames;
-                    Application.Json,
-                    Application.Xml
-              }
-          };
-    })
-    .AddXmlSerializerFormatters();
-  // ENDE-- Services
   var app = builder.Build();
-
 
   app.Use(async (context, next) =>
   {
@@ -47,16 +22,8 @@ try
     await next();
   });
 
-  if (app.Environment.IsDevelopment())
-  {
-    app.UseExceptionHandler("/error/development-error");
-  }
-  else
-  {
-    app.UseExceptionHandler("/error/production-error");
-  }
-
   app.UseDefaultFiles();
+  app.UseStaticFiles();
 
   // Configure the HTTP request pipeline.
   if (app.Environment.IsDevelopment())
@@ -89,7 +56,6 @@ try
   app.UseRouting();
 
   app.UseAuthorization();
-  app.UseStaticFiles();
 
   app.MapControllerRoute(
     name: "default",

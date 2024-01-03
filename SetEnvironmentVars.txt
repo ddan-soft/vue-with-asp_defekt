@@ -1,10 +1,6 @@
 setx EMAIL_PASS ...
 setx DB_PASS ...
-setx DB_CONNECTION_STRING "..."
 
 Visual Studio danach neu starten
 
-
-Azure:
-DanielsFirstWebApp | Konfiguration
-
+Auf Azure unter "DanielsFirstWebApp | Konfiguration" ändern

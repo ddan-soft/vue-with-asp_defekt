@@ -85,17 +85,29 @@
     },
     methods: {
       async logIn() {
+        let myHeaders = new Headers();
+        let myInit = {
+          method: "POST",
+          headers: myHeaders,
+          mode: "cors",
+          cache: "default",
+          body: {
+            userName: this.username,
+            password: this.password
+          }
+        };
+
         const jsonData = {
-          userName: escape(this.username.replace(/[&<>"'\/]/g, '')),
-          password: escape(this.password.replace(/[&<>"'\/]/g, ''))
+          userName: this.username,
+          password: this.password
         };
 
         const postData = new FormData();
         postData.append("json", JSON.stringify(jsonData));
 
-        const myHeaders = new Headers();
+        myHeaders = new Headers();
 
-        const myInit = {
+        myInit = {
           method: "POST",
           headers: myHeaders,
           mode: "cors",
@@ -103,7 +115,7 @@
           body: postData
         };
 
-        const myRequest = new Request("/login");
+        const myRequest = new Request("login");
 
         fetch(myRequest, myInit)
           .then((response) => {
@@ -111,21 +123,13 @@
             let vJson = response.json();
             return vJson
           })
-          .then((jsonString) => {
-            jsonString = jsonString.replace(/'/g, '"')
-            const jsonObject = JSON.parse(jsonString);
-            
-            this.loginResult = jsonObject.message
-            if (jsonObject.success === true) {
-              sessionStorage.setItem("Page_Home_Session_Id", jsonObject.sessionId)
-              window.location.href = '/src/pages/home/home.html';
-            }
+          .then((json) => {
+            this.loginResult = json
           })
           .catch((error) => {
             console.error(error);
           });
-        ;
-
+          ;
       }
     }
   }
